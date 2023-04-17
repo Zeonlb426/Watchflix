@@ -8,10 +8,6 @@ import "swiper/css";
 // import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-
-// import required modules
-// import { Pagination } from "swiper";
-
 export default function Poster() {
 
     const [error, setError] = useState(null);
@@ -21,13 +17,10 @@ export default function Poster() {
 
 
     useEffect(() => {
-        const storedMovies = localStorage.getItem("popular");
         const liveTimeMovies = localStorage.getItem("popularTimestamp");
-
         const fetchData = () => {
-            console.log('Запрос отправлен');
-            fetch("https://api.themoviedb.org/3/movie/popular?api_key=46b3d80e68c3305b185dc8a255c58fac&language=en-US&page=1")
-            // fetch("https://api.themoviedb.org/3/movie/upcoming?api_key=46b3d80e68c3305b185dc8a255c58fac&language=en-US&page=1")
+            // fetch("https://api.themoviedb.org/3/movie/popular?api_key=46b3d80e68c3305b185dc8a255c58fac&language=en-US&page=1")
+            fetch("https://api.themoviedb.org/3/movie/upcoming?api_key=46b3d80e68c3305b185dc8a255c58fac&language=en-US&page=1")
             .then(res => res.json())
             .then(
                 (answer) => {
@@ -49,7 +42,7 @@ export default function Poster() {
             localStorage.removeItem("popularTimestamp");
         }
 
-        if (!storedMovies) {
+        if (!localStorage.getItem("popular")) {
             fetchData();
         }else{
             setMovies(JSON.parse(localStorage.getItem("popular")));
@@ -64,31 +57,35 @@ export default function Poster() {
 
     return (
         <div className="h-screen bg-center bg-cover items-end" style={{backgroundImage: `url("https://image.tmdb.org/t/p/original${movies[index].backdrop_path}")`}}>
-            <div className='h-screen flex items-end bg-gradient-to-b from-transparent from-70% to-black to-90%'>
-                <div className='max-w-screen-2xl mx-auto'>
-{/* 
-                    <div className=''>
+            <div className='h-screen bg-gradient-to-b from-[#000000b5] from-10% via-transparent via-50% to-black to-80%'>
+                <div className='max-w-screen-2xl mx-auto flex flex-col h-screen justify-between'>
+
+                    <div className='mt-28'>
                         <div className=''>
-                            <span className=''>
+                            <span className='text-4xl md:text-7xl '>
                                 {movies[index].original_title}
                             </span>
-                            <p className=''>
+                             <p className='max-w-2xl mt-8 text-slate-300'>
                                 {movies[index].overview}
                             </p>
-                            <div className=''>
-                                <span className=''>Release date:</span>
-                                <span className=''>{movies[index].release_date}</span>
+                            
+                            <div className="flex gap-8 mt-8">
+                                <div className='flex items-center gap-2 bg-yellow-500 px-4 py-1 rounded-xl border border-yellow-900'>
+                                    <span className='text-slate-600'>Rating:</span>
+                                    <span className='font-bold text-black '>{movies[index].vote_average}</span>
+                                </div>
+                                <div className='flex items-center gap-2 bg-yellow-500 px-4 py-1 rounded-xl border border-yellow-900'>
+                                    <span className='text-slate-600'>Vote count:</span>
+                                    <span className='font-bold text-black'>{movies[index].vote_count}</span>
+                                </div> 
+                                <div className='flex items-center gap-2 bg-yellow-500 px-4 py-1 rounded-xl border border-yellow-900'>
+                                    <span className='text-slate-600'>Release date:</span>
+                                    <span className='font-bold text-black'>{movies[index].release_date}</span>
+                                </div>
                             </div>
-                            <div className=''>
-                                <span className=''>Rating:</span>
-                                <span className=''>{movies[index].vote_average}</span>
-                            </div>
-                            <div className=''>
-                                <span className=''>Vote count:</span>
-                                <span className=''>{movies[index].vote_count}</span>
-                            </div>
+                            
                         </div>
-                    </div> */}
+                    </div>
 
                     {/* <div className='flex'> */}
                     <Swiper
@@ -98,29 +95,22 @@ export default function Poster() {
                         navigation={true}
                         modules={[Navigation]}
                         pagination={false}
-                        className="mx-auto flex flex-row relative w-full"
+                        className="mx-auto flex flex-row relative w-full p-6"
                         breakpoints={{
-                            // when window width is >= 320px
                             320: {
                               slidesPerView: 1,
                               spaceBetween: 12,
                             },
-                            // when window width is >= 480px
-                            // 480: {
-                            //   slidesPerView: 2,
-                            //   spaceBetween: 24,
-                            // },
-                            // when window width is >= 640px
                             640: {
                               slidesPerView: 2,
                               spaceBetween: 12,
                             },
                             1024: {
-                              slidesPerView: 4,
+                              slidesPerView: 3,
                               spaceBetween: 16,
                             },
                             1336: {
-                              slidesPerView: 5,
+                              slidesPerView: 4,
                               spaceBetween: 30,
                             },
                           }}
