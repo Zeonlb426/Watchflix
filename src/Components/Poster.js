@@ -75,21 +75,21 @@ export default function Poster() {
                             </p>
                             
                             <div className="flex gap-8 mt-8">
-                                <div className='flex items-center gap-2 bg-yellow-500 px-4 py-1 rounded-xl border border-yellow-900'>
+                                <div className='flex items-center gap-2 bg-yellow-300 px-4 py-1 rounded-xl border border-yellow-900'>
                                     <span className='text-slate-600'>Rating:</span>
                                     <span className='font-bold text-black '>{movies[index].vote_average}</span>
                                 </div>
-                                <div className='flex items-center gap-2 bg-yellow-500 px-4 py-1 rounded-xl border border-yellow-900'>
+                                <div className='flex items-center gap-2 bg-yellow-300 px-4 py-1 rounded-xl border border-yellow-900'>
                                     <span className='text-slate-600'>Vote count:</span>
                                     <span className='font-bold text-black'>{movies[index].vote_count}</span>
                                 </div> 
-                                <div className='flex items-center gap-2 bg-yellow-500 px-4 py-1 rounded-xl border border-yellow-900'>
+                                <div className='flex items-center gap-2 bg-yellow-300 px-4 py-1 rounded-xl border border-yellow-900'>
                                     <span className='text-slate-600'>Release date:</span>
                                     <span className='font-bold text-black'>{movies[index].release_date}</span>
                                 </div>
                             </div>
 
-                            <PosterVideo movie={movies[index]}/>
+                            <PosterVideo movieId={movies[index].id}/>
                             
                         </div>
                     </div>

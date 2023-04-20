@@ -17,7 +17,7 @@ export default function Menu() {
                 {routes.map(
                     (route, index) => (
                         <li className="text-base" key={index}>
-                            <NavLink className={({isActive}) => isActive ? "border-yellow-500 border-b-4 " : "border-transparent border-b-4 " } to={route.path}>
+                            <NavLink className={({isActive}) => isActive ? "border-yellow-300 border-b-4 " : "border-transparent border-b-4 " } to={route.path}>
                                 {route.name}
                             </NavLink>
                         </li>
