@@ -8,12 +8,10 @@ import "swiper/css/navigation";
 import PosterVideo from "./PosterVideo";
 
 export default function Poster() {
-
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [movies, setMovies] = useState([]);
     const [index, setIndex] = useState(0);
-
 
     useEffect(() => {
         const liveTimeMovies = localStorage.getItem("popularTimestamp");
@@ -49,17 +47,14 @@ export default function Poster() {
             setIsLoading(false);
         }
 
-      }, [])
-
+    }, [])
 
     if (isLoading) return(<h1>Loading ...</h1>)
     if (error !== null) return(<h1>ERROR</h1>)
 
-
     const handler = (index) => {
         setIndex(index);
     }
-
     return (
         <div className="h-screen bg-center bg-cover items-end" style={{backgroundImage: `url("https://image.tmdb.org/t/p/original${movies[index].backdrop_path}")`}}>
             <div className='h-screen bg-gradient-to-b from-[#000000b5] from-10% via-transparent via-50% to-black to-80%'>
@@ -89,7 +84,7 @@ export default function Poster() {
                                 </div>
                             </div>
 
-                            <PosterVideo movie={movies[index]}/>
+                            <PosterVideo movieId={movies[index].id}/>
                             
                         </div>
                     </div>
@@ -134,7 +129,6 @@ export default function Poster() {
 
                 </div>
             </div>
-            
         </div>
     )
 }
