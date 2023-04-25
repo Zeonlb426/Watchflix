@@ -1,6 +1,6 @@
 
 import Poster from "../Components/Poster";
-import ViewList from "../Components/ViewList";
+import MovieTop from "../Components/MovieTop";
 
 export default function Home() {
 
@@ -11,8 +11,8 @@ export default function Home() {
     return (
         <div>
             <Poster/>
-            <ViewList title={'Top Movies'} url={topMoviesUrl} />
-            <ViewList title={'Top TV Show'} url={topTvShowUrl}/>
+            <MovieTop/>
+            {/* <ViewList title={'Top TV Show'} url={topTvShowUrl}/> */}
 
 
         </div>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ViewListCard from "./ViewListCard"
 
-export default function ViewList(prop) {
+export default function MovieTop(prop) {
 
     const [data, setData] = useState([])
     const [isLoading, setIsLoading] = useState(true)
