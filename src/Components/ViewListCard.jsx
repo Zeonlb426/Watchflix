@@ -1,25 +1,40 @@
+import { StarIcon, EyeIcon } from '@heroicons/react/24/outline';
+
 export default function ViewListCard(prop) {
 
-    const {data} = prop
+    const {title, image, genres, voteAverage, voteCount} = prop
 
-    console.log(data);
+
 
     return (
-        <div className="bg-black border-2 border-white p-6">
-            <span className="rounded-md bg-yellow-300 text-black py-[2px] px-2">
-                Fantasy
-            </span>
-
-            <div>
-                <div>
-                    <span>2023-04-23</span>
-                    <span>4 987</span>
+        <div className="w-[300px] h-[400px] bg-center bg-cover " style={{backgroundImage: `url("https://image.tmdb.org/t/p/original${image}")`}}>
+           <div className='flex justify-between flex-col w-[300px] h-[400px] p-6 bg-gradient-to-b from-transparent from-60% to-black to-90%'>
+                <div className='flex'>
+                    {genres.map((genre)=>{
+                        return (
+                            <span className="rounded-md bg-yellow-300 text-black py-[2px] px-2">
+                                {genre.name}
+                            </span>
+                        )
+                    })}
                 </div>
-                <div>
-                    <h3>{data[0].title}</h3>
+                
+                <div className=''>
+                    <div className='flex gap-4 bg-yellow-300 px-2 py-1 rounded-md'>
+                        <span className='flex gap-1 text-black'>
+                            <StarIcon className="h-6 w-6 text-black" />
+                            {voteAverage}
+                        </span>
+                        <span className='flex gap-1 text-black'>
+                            <EyeIcon className="h-6 w-6 text-black" />
+                            {voteCount}
+                        </span>
+                    </div>
+                    <div>
+                        <h3 className='text-2xl text-center'>{title}</h3>
+                    </div>
                 </div>
-            </div>
-
+            </div> 
         </div>
     )
 }
