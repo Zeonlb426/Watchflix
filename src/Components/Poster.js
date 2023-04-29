@@ -63,7 +63,7 @@ export default function Poster() {
                     <div className='mt-28'>
                         <div className=''>
                             <span className='text-4xl md:text-7xl '>
-                                {movies[index].original_title}
+                                {movies[index].title}
                             </span>
                              <p className='max-w-2xl mt-8 text-slate-300'>
                                 {movies[index].overview}

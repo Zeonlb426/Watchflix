@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ViewListCard from "./ViewListCard"
+import { NavLink } from "react-router-dom";
 
 export default function MovieTop() {
 
@@ -37,12 +38,15 @@ export default function MovieTop() {
             const movie = movies[index];
             let newArrayGenres = []
             movie.genre_ids.map((id) => {
-                newArrayGenres = genres.filter((genre)=>{
-                    return genre.id === id
-                })
+                    newArrayGenres.push(
+                        ...genres.filter((genre)=>{
+                            return genre.id === id
+                        })
+                    )
             })
             list.push(
                 <ViewListCard 
+                    key={movie.id}
                     title={movie.title} 
                     image={movie.poster_path} 
                     genres={newArrayGenres} 
@@ -61,9 +65,9 @@ export default function MovieTop() {
         <div className="max-w-screen-2xl mx-auto mt-40">
             <div className="flex items-center justify-between">
                 <h2 className="text-5xl">Top Movies</h2>
-                <button className="text-yellow-300">View More</button>
+                <NavLink className="text-yellow-300" to={'/movies'}>View More</NavLink>
             </div>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-4 justify-items-center">
                 {list}
             </div>
             

@@ -4,15 +4,13 @@ export default function ViewListCard(prop) {
 
     const {title, image, genres, voteAverage, voteCount} = prop
 
-
-
     return (
         <div className="w-[300px] h-[400px] bg-center bg-cover " style={{backgroundImage: `url("https://image.tmdb.org/t/p/original${image}")`}}>
            <div className='flex justify-between flex-col w-[300px] h-[400px] p-6 bg-gradient-to-b from-transparent from-60% to-black to-90%'>
-                <div className='flex'>
-                    {genres.map((genre)=>{
+                <div className='flex gap-1 flex-wrap'>
+                    {genres.map((genre, index)=>{
                         return (
-                            <span className="rounded-md bg-yellow-300 text-black py-[2px] px-2">
+                            <span key={index} className="rounded-md bg-yellow-300 text-black text-sm px-1">
                                 {genre.name}
                             </span>
                         )
