@@ -1,21 +1,38 @@
 import { useEffect, useState } from "react";
-import { PlayIcon } from '@heroicons/react/24/outline';
+import { PlayIcon, CalendarDaysIcon, StarIcon } from '@heroicons/react/24/outline';
 
 export default function EpisodesCard(props) {
 
     const { id, season, episode } = props
     const [isOpen, setOpen] = useState(false)
-    let episodes = 1
-    const url = `https://api.themoviedb.org/3/tv/${id}/season/${season}/episode/${episodes}?api_key=46b3d80e68c3305b185dc8a255c58fac&language=en-US`
+    const [detail, setDetail] = useState({})
+    const [video, setVideo] = useState([])
+    const [isLoadingDetail, setIsLoadingDetail] = useState(true)
+    const [isLoadingVideo, setIsLoadingVideo] = useState(true)
+    
+    const urlDetail = `https://api.themoviedb.org/3/tv/${id}/season/${season}/episode/${episode}?api_key=46b3d80e68c3305b185dc8a255c58fac&language=en-US`
+    const urlVideo = `https://api.themoviedb.org/3/tv/${id}/season/${season}/episode/${episode}/videos?api_key=46b3d80e68c3305b185dc8a255c58fac&language=en-US`
 
     useEffect(
         () => {
-            fetch(url)
+            fetch(urlDetail)
                 .then(response => response.json())
                 .then(answer => {
-                    console.log(answer);
+                    setDetail(answer)
+                    setIsLoadingDetail(false)
                 })
-        }, [season])
+
+            fetch(urlVideo)
+                .then(response => response.json())
+                .then(answer => {
+                    setVideo(answer.results)
+                    setIsLoadingVideo(false)
+                })
+        }, [])
+
+    if (isLoadingDetail) {
+        <div>Loading...</div>
+    }
 
     return (
         <div className="flex">
@@ -29,13 +46,14 @@ export default function EpisodesCard(props) {
 
             </div>
 
-            <div>
-                <p>Episode 1</p>
-                <h2>First Meet</h2>
-                <p>lorem ipsum</p>
+            <div className="text-left">
+                <div className="flex-col justify-between">
+                    <h2 className="flex-nowrap overflow-hidden text-xl font-bold">{detail.name}</h2>
+                    <p className="flex-nowrap overflow-hidden text-sm text-gray-300">{detail.overview}</p>
+                </div>
                 <div className="flex gap-2">
-                    <span>6464</span>
-                    <span>23.45.2003</span>
+                    <span className="flex text-xs gap-2"><CalendarDaysIcon className="h-4 w-4 text-yellow-300"/>{detail.air_date}</span>
+                    <span className="flex text-xs gap-2"><StarIcon className="h-4 w-4 text-yellow-300"/>{detail.vote_average}</span>
                 </div>
             </div>
         </div>
