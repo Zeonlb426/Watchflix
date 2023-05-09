@@ -31,11 +31,11 @@ export default function EpisodesCard(props) {
         }, [])
 
     if (isLoadingDetail) {
-        <div>Loading...</div>
+        return <div>Loading...</div>
     }
 
     return (
-        <div className="flex">
+        <div className="flex border-2 border-yellow-300 mb-10 p-4">
             <div className="w-48 h-48 flex items-center justify-center">
                 <div onClick={() => setOpen(true)} className='flex items-center justify-center border-2 border-yellow-300 bg-transparent w-16 h-16 rounded-full cursor-pointer'>
 
@@ -46,10 +46,10 @@ export default function EpisodesCard(props) {
 
             </div>
 
-            <div className="text-left">
+            <div className="text-left flex flex-col justify-between">
                 <div className="flex-col justify-between">
                     <h2 className="flex-nowrap overflow-hidden text-xl font-bold">{detail.name}</h2>
-                    <p className="flex-nowrap overflow-hidden text-sm text-gray-300">{detail.overview}</p>
+                    <p className="flex-nowrap overflow-hidden text-sm text-gray-300">{detail.overview ? detail.overview : 'Описание отсутствует...'}</p>
                 </div>
                 <div className="flex gap-2">
                     <span className="flex text-xs gap-2"><CalendarDaysIcon className="h-4 w-4 text-yellow-300"/>{detail.air_date}</span>

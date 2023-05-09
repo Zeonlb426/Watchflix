@@ -33,7 +33,7 @@ export default function Episodes(props) {
 
 
     if (arrayEpisodes?.length < 1) {
-        return <div className="text-xl text-white">No information...</div>
+        return <div className="text-xl text-white h-[228px] mb-10 mt-8">No information...</div>
     }
 
     return (

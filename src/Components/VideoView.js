@@ -99,8 +99,7 @@ export default function VideoView() {
             {/* <div className="border-4 border-orange-500 h-[400px] p-10 flex">
                 <p>video</p>
             </div> */}
-            {/* <DetailSeason id={listTv[index].id}/> */}
-            <DetailSeason id={12301}/>
+            <DetailSeason id={listTv[index].id}/>
         </div>
 
 
