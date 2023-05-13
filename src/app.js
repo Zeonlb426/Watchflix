@@ -7,13 +7,13 @@ import Faq from "./Pages/Faq";
 import Contact from "./Pages/Contact";
 import Pricing from "./Pages/Pricing";
 import Movies from "./Pages/Movies";
-import Header from "./Components/Header";
-import Footer from "./Components/Footer";
+import Header from "./Blocs/Header";
+import Footer from "./Blocs/Footer";
 
 export default function App(){
 
     return(
-        <div className="bg-black min-h-screen text-white grid">
+        <div className="bg-neutral-900 min-h-screen text-white grid">
             <Header/>
             <Routes>
                 <Route path="/" element={<Home/>}/>

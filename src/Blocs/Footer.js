@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 export default function Footer() {
     return (
-        <div className="bg-gray-900">
+        <div className="bg-neutral-800">
             <div className="max-w-screen-2xl mx-auto grid grid-cols-3">
                 <div className='py-28'>
                     <h3 className='text-6xl'>Watchflix</h3>
