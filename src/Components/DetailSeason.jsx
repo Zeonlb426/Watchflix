@@ -27,10 +27,6 @@ export default function DetailSeason(props) {
         }, [] 
     )
 
-    const handlerButtonClick = () => {
-        console.log("jgkgjkhghjghj");
-    }
-
     if (isLoading) {
         <div>Loading...</div>
     }
@@ -49,37 +45,37 @@ export default function DetailSeason(props) {
         <div className="mt-8">
             <div className="flex gap-2 relative">
                 <Swiper
-                            slidesPerView={8}
-                            spaceBetween={30}
-                            grabCursor={true}
-                            navigation={true}
-                            modules={[Navigation]}
-                            pagination={false}
-                            className="flex items-center justify-center"
-                            breakpoints={{
-                                320: {
-                                slidesPerView: 2,
-                                spaceBetween: 12,
-                                },
-                                640: {
-                                slidesPerView: 3,
-                                spaceBetween: 12,
-                                },
-                                1024: {
-                                slidesPerView: 5,
-                                spaceBetween: 16,
-                                },
-                                1336: {
-                                slidesPerView: 8,
-                                spaceBetween: 30,
-                                },
-                            }}
-                        >
-                            {buttons}
-                        </Swiper>
+                    slidesPerView={8}
+                    spaceBetween={30}
+                    grabCursor={true}
+                    navigation={true}
+                    modules={[Navigation]}
+                    pagination={false}
+                    className="flex items-center justify-center"
+                    breakpoints={{
+                        320: {
+                        slidesPerView: 2,
+                        spaceBetween: 12,
+                        },
+                        640: {
+                        slidesPerView: 3,
+                        spaceBetween: 12,
+                        },
+                        1024: {
+                        slidesPerView: 5,
+                        spaceBetween: 16,
+                        },
+                        1336: {
+                        slidesPerView: 8,
+                        spaceBetween: 30,
+                        },
+                    }}
+                >
+                    {buttons}
+                </Swiper>
             </div>
 
-            <div className="flex justify-between items-center">
+            <div className="mt-8">
                 <Episodes id={id} season={numberSeason}/>
             </div>
         </div>

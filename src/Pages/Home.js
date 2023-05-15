@@ -1,20 +1,17 @@
 
-import Poster from "../Components/Poster";
-import MovieTop from "../Components/MovieTop";
-import TVShowTop from "../Components/TVShowTop";
-import VideoView from "../Components/VideoView";
+import Poster from "../Blocs/Poster";
+import MovieTop from "../Blocs/MovieTop";
+import TVShowTop from "../Blocs/TVShowTop";
+import VideoView from "../Blocs/VideoView";
 
 export default function Home() {
 
     return (
-        <div>
+        <div className='w-full'>
             <Poster/>
             <MovieTop/>
             <TVShowTop/>
             <VideoView/>
-            {/* <ViewList title={'Top TV Show'} url={topTvShowUrl}/> */}
-
-
         </div>
     )
 }

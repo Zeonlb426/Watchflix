@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import ViewListCard from "./ViewListCard"
+import ViewListCard from "../Components/ViewListCard"
 import { NavLink } from "react-router-dom";
+import ViewOneCard from "../Components/ViewOneCard";
 
 export default function MovieTop() {
 
@@ -34,7 +35,28 @@ export default function MovieTop() {
     let list = [];
 
     if (isLoadingMovies === false && isLoadingGenres === false) {
-       for (let index = 0; index < 6; index++) {
+        let newArrayGenres = []
+
+        movies[0].genre_ids.map((id) => {
+            newArrayGenres.push(
+                ...genres.filter((genre)=>{
+                    return genre.id === id
+                })
+            )
+        })
+
+        list.push(
+            <ViewOneCard 
+                key={movies[0].id}
+                title={movies[0].title} 
+                image={movies[0].backdrop_path} 
+                genres={newArrayGenres} 
+                voteAverage={movies[0].vote_average} 
+                voteCount={movies[0].vote_count}
+                className={'sm:col-span-2'}
+            />
+        )
+       for (let index = 1; index < 5; index++) {
             const movie = movies[index];
             let newArrayGenres = []
             movie.genre_ids.map((id) => {
@@ -58,19 +80,24 @@ export default function MovieTop() {
     }
 
     if (isLoadingMovies || isLoadingGenres) {
-        return(<div>Загружается...</div>)
+        return(
+            <div className="max-w-screen-2xl mx-auto mt-40 px-4 sm:px-10">
+                <div className="flex items-center justify-center">
+                    <h2 className="text-5xl">Загружается...</h2>
+                </div>
+            </div>
+        )
     }
 
     return (
-        <div className="max-w-screen-2xl mx-auto mt-40">
+        <div className="max-w-screen-2xl mx-auto mt-40 px-4 sm:px-10">
             <div className="flex items-center justify-between">
-                <h2 className="text-5xl">Top Movies</h2>
+                <h2 className="text-xl sm:text-4xl">Top Movies</h2>
                 <NavLink className="text-yellow-300" to={'/movies'}>View More</NavLink>
             </div>
-            <div className="grid grid-cols-3 gap-4 justify-items-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-y-10 md:gap-y-16 justify-items-center mt-8">
                 {list}
             </div>
-            
         </div>
     )
 }

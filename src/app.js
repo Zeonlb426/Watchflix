@@ -13,7 +13,7 @@ import Footer from "./Blocs/Footer";
 export default function App(){
 
     return(
-        <div className="bg-neutral-900 min-h-screen text-white grid">
+        <div className="bg-neutral-900 min-h-screen text-white">
             <Header/>
             <Routes>
                 <Route path="/" element={<Home/>}/>

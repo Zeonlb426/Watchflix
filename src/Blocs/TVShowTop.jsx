@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import ViewListCard from "./ViewListCard"
+import ViewListCard from "../Components/ViewListCard"
 import { NavLink } from "react-router-dom";
+import ViewOneCard from "../Components/ViewOneCard";
 
 export default function TVShowTop() {
 
@@ -34,8 +35,30 @@ export default function TVShowTop() {
     let list = [];
 
     if (isLoadingTVShow === false && isLoadingGenres === false) {
+
+        let newArrayGenres = []
+
+        tvShow[0].genre_ids.map((id) => {
+            newArrayGenres.push(
+                ...genres.filter((genre)=>{
+                    return genre.id === id
+                })
+            )
+        })
+
+        list.push(
+            <ViewOneCard 
+                key={tvShow[0].id}
+                title={tvShow[0].name} 
+                image={tvShow[0].backdrop_path} 
+                genres={newArrayGenres} 
+                voteAverage={tvShow[0].vote_average} 
+                voteCount={tvShow[0].vote_count}
+                className={'sm:col-span-2'}
+            />
+        )
  
-       for (let index = 0; index < 6; index++) {
+       for (let index = 1; index < 5; index++) {
             const tvshow = tvShow[index];
             let newArrayGenres = []
             tvshow.genre_ids.map((id) => {
@@ -59,16 +82,22 @@ export default function TVShowTop() {
     }
 
     if (isLoadingTVShow || isLoadingGenres) {
-        return(<div>Загружается...</div>)
+        return(
+            <div className="max-w-screen-2xl mx-auto mt-40 px-4 sm:px-10">
+                <div className="flex items-center justify-center">
+                    <h2 className="text-5xl">Загружается...</h2>
+                </div>
+            </div>
+        )
     }
 
     return (
-        <div className="max-w-screen-2xl mx-auto mt-40">
+        <div className="max-w-screen-2xl mx-auto mt-40 px-4 sm:px-10">
             <div className="flex items-center justify-between">
-                <h2 className="text-5xl">Top TV Show</h2>
+                <h2 className="text-xl sm:text-4xl">Top TV Show</h2>
                 <NavLink className="text-yellow-300" to={'/tv-show'}>View More</NavLink>
             </div>
-            <div className="grid grid-cols-3 gap-4 justify-items-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-y-10 md:gap-y-16 justify-items-center mt-8">
                 {list}
             </div>
         </div>

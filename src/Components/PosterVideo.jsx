@@ -26,7 +26,6 @@ export default function PosterVideo(props) {
                         return false;
                     })
                 }
-
                 if (!hasTrailer) {
                     setVideo(null);
                     setLoading(false)
@@ -37,7 +36,13 @@ export default function PosterVideo(props) {
         fetchData();
     }, [movieId])
 
-    if (loading) return(<div>Loading...</div>)
+    if (loading) return(
+        <div className="mt-8">
+            <div className="flex items-center justify-center bg-yellow-300 w-40 py-1 px-2 rounded-md text-black">
+                <span>Loading...</span>
+            </div>
+        </div>
+    )
 
     if (video === null) return(
         <div className="mt-8">
@@ -49,11 +54,11 @@ export default function PosterVideo(props) {
     )
 
     return (
-        <div className="mt-8">
+        <div className="mt-8 flex justify-center sm:block">
             <ModalVideo channel={video.site.toLowerCase()} autoplay isOpen={isOpen} videoId={video.key} onClose={() => setOpen(false)} />
-            <div onClick={()=> setOpen(true)} className='flex items-center justify-center border-2 border-yellow-300 bg-transparent w-20 h-20 rounded-full cursor-pointer'>
-                <div className="flex items-center justify-center bg-yellow-300 w-14 h-14 rounded-full">
-                    <PlayIcon className="h-6 w-6 text-black" />
+            <div onClick={()=> setOpen(true)} className='flex items-center justify-center border-2 border-yellow-300 bg-transparent w-full h-12 max-w-[320px] sm:w-20 sm:h-20 rounded-full cursor-pointer'>
+                <div className="flex items-center justify-center bg-yellow-300 w-[95%] h-8 sm:w-14 sm:h-14 rounded-full">
+                    <PlayIcon className="h-4 w-4 sm:h-6 sm:w-6 text-black" />
                 </div>
             </div>
         </div>

@@ -14,8 +14,6 @@ export default function Episodes(props) {
 
     const url = `https://api.themoviedb.org/3/tv/${id}/season/${season}?api_key=46b3d80e68c3305b185dc8a255c58fac&language=en-US`
 
-
-
     useEffect(
         () => {
             fetch(url)
@@ -25,14 +23,15 @@ export default function Episodes(props) {
                     setIsLoading(false)
                 
                 })
-        }, [season])
+        }, [season]
+    )
 
     if (isLoading) {
         return <div>Loading...</div>
     }
 
 
-    if (arrayEpisodes?.length < 1) {
+    if (arrayEpisodes?.length === 0) {
         return <div className="text-xl text-white h-[228px] mb-10 mt-8">No information...</div>
     }
 
@@ -44,30 +43,30 @@ export default function Episodes(props) {
             navigation={true}
             modules={[Navigation]}
             pagination={false}
-            className="flex items-center justify-center mt-8"
+            className="p-4"
             breakpoints={{
                 320: {
                     slidesPerView: 1,
-                    spaceBetween: 12,
+                    spaceBetween: 0,
                 },
                 640: {
                     slidesPerView: 1,
-                    spaceBetween: 12,
+                    spaceBetween: 0,
                 },
                 1024: {
                     slidesPerView: 2,
-                    spaceBetween: 16,
+                    spaceBetween: 5,
                 },
                 1336: {
                     slidesPerView: 3,
-                    spaceBetween: 30,
+                    spaceBetween: 10,
                 },
             }}
         >
             {arrayEpisodes.map((episode, index) => {
                 return (
-                    <SwiperSlide key={index} className="flex items-center justify-center text-center">
-                        <EpisodesCard id={id} season={season} episode={index+1}/>
+                    <SwiperSlide key={index} className={'flex justify-center items-center'}>
+                        <EpisodesCard id={id} season={season} episode={episode}/>
                     </SwiperSlide>
                 )
             })}
