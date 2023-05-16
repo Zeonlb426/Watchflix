@@ -25,7 +25,7 @@ export default function FormField({
         <div className="grid gap-2">
             <label className="text-white flex flex-col">
                 <span className="relative w-fit">
-                    {require ? <span className="text-red-500 text-xl absolute -right-3">*</span> : ''}
+                    {!!rules?.required ? <span className="text-red-500 text-xl absolute -right-3">*</span> : ''}
                     {label}
                 </span>
                 {inputField}
