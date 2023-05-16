@@ -1,8 +1,25 @@
-import { useState } from "react"
 
-export default function FormField(props) {
+export default function FormField({ 
+    type,
+    name,
+    label,
+    register,
+    rules,
+    errors,
+}) {
 
-    const { type, name, label, require = false, handlerOnChenge, value } = props
+    let inputField
+    switch(type){
+        case 'textarea':
+            inputField = <textarea {...register(name, { ...rules })} className={`p-2 rounded-md text-lg text-black border-2 ${errors[name]?.message ? "border-red-500" : "border-white"} `} name={name} />
+        break;
+        case 'checkbox':
+        case 'radio':
+            inputField = <input {...register(name, { ...rules })} className={`p-2 rounded-md text-lg text-black`} type={type} name={name}/>
+        break;
+        default:
+            inputField = <input {...register(name, { ...rules })} className={`p-2 rounded-md text-lg text-black border-2 ${errors[name]?.message ? "border-red-500" : "border-white"}`} type={type} name={name}/>
+    }
 
     return (
         <div className="grid gap-2">
@@ -11,12 +28,11 @@ export default function FormField(props) {
                     {require ? <span className="text-red-500 text-xl absolute -right-3">*</span> : ''}
                     {label}
                 </span>
-                {type === 'textarea' ? 
-                    <textarea required={require} className="p-2 rounded-md text-lg text-black" name={name} value={value} onChange={handlerOnChenge}/>
-                :
-                    <input required={require} className="p-2 rounded-md text-lg text-black" type={type} name={name} value={value} onChange={handlerOnChenge}/>
-                }
+                {inputField}
             </label>
+            <div className="text-red-500 text-xs h-7">
+                { errors[name]?.message }
+            </div>
         </div>
     )
 }

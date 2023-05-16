@@ -8,9 +8,9 @@ export default function Menu() {
         {path:'/', name:'Home'},
         {path:'/movies', name:'Movies'},
         {path:'/tv-show', name:'TV Show'},
-        {path:'/video', name:'Video'},
-        {path:'/faq', name:'FAQ'},
-        {path:'/pricing', name:'Pricing'},
+        // {path:'/video', name:'Video'},
+        // {path:'/faq', name:'FAQ'},
+        // {path:'/pricing', name:'Pricing'},
         {path:'/contact', name:'Contact Us'},
     ]
 
